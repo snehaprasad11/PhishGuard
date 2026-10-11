@@ -1,0 +1,19 @@
+{
+  "model_version": "url-v0.4.0",
+  "metrics": {
+    "pr_auc": 0.7994359505930095,
+    "recall_at_fpr_1pct": 0.655428024868484,
+    "brier": 0.028335887153104974,
+    "test_fpr": 0.01007881176113974,
+    "test_recall": 0.6568627450980392,
+    "model_size_kb": 1.076171875,
+    "latency_ms_p50": 5.9,
+    "curated_holdout_flagged": 0,
+    "openphish_unseen_recall": 0.5443037974683544,
+    "text_pr_auc": 0.8068342461068567,
+    "text_test_fpr": 0.005516154452324665,
+    "text_test_recall": 0.3683206106870229,
+    "text_holdout_legit_flagged": 0,
+    "text_holdout_scam_caught": 11
+  }
+}

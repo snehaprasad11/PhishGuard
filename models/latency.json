@@ -1,0 +1,21 @@
+{
+  "model_version": "url-v0.4.0",
+  "measured_at": "2026-10-11",
+  "runs": 200,
+  "click_to_result_ms": {
+    "p50": 5.9,
+    "p95": 9.8,
+    "max": 16.5
+  },
+  "analyse_ms": {
+    "p50": 0.8,
+    "p95": 1.7,
+    "max": 3.8
+  },
+  "cold_model_load_ms": 407,
+  "environment": {
+    "browser": "msedge 155.0.4283.45",
+    "os": "win32 10.0.26300",
+    "cpu": "Intel(R) Core(TM) Ultra 5 125H"
+  }
+}

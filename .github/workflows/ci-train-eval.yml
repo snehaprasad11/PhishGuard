@@ -1,0 +1,60 @@
+name: model
+
+# Lints and tests the training pipeline, then runs the release gate: the build
+# fails if the published model is worse than the accepted baseline.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: training/requirements.lock
+
+      - name: Install dependencies
+        run: pip install -r training/requirements.lock
+
+      - name: Lint
+        run: ruff check .
+
+      # Includes test_published_model.py, which fails if the committed ONNX file,
+      # its metadata, the known-sites list or the parity fixture are out of step.
+      - name: Tests
+        run: pytest
+
+      - name: Release gate (published model vs accepted baseline)
+        run: python -m training.gate
+
+      # Retraining needs the pinned raw data, which cannot be re-downloaded from
+      # the live feeds. It runs only once data.snapshot_base_url is set.
+      - name: Retrain from the pinned snapshot and gate the result
+        run: |
+          url=$(python -c "from training.config import load_config; print(load_config()['data']['snapshot_base_url'])")
+          if [ -z "$url" ]; then
+            echo "::notice::data.snapshot_base_url is not set, so the model was not retrained in CI."
+            exit 0
+          fi
+          python -m training.data.fetch --from-snapshot
+          python -m training.pipeline
+          python -m training.gate
+
+      - name: Upload the model card
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: model-card
+          path: |
+            models/model_card.html
+            models/metrics.json
