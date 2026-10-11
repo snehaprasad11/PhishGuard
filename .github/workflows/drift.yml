@@ -39,12 +39,19 @@ jobs:
           set +e
           python -m training.drift --live
           status=$?
-          echo "status=$status" >> "$GITHUB_OUTPUT"
           if [ "$status" -eq 3 ]; then
             echo "::warning::The live feed could not be downloaded, so no drift report was produced."
+            echo "status=none" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           if [ "$status" -ne 0 ] && [ "$status" -ne 2 ]; then exit "$status"; fi
+          # Soon after a retrain there is too little new phishing to judge: no report is written.
+          if [ ! -f training/artifacts/drift-report.md ]; then
+            echo "::notice::Too few new phishing reports since the training snapshot for a drift report."
+            echo "status=none" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "status=$status" >> "$GITHUB_OUTPUT"
           cat training/artifacts/drift-report.md >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload the report
