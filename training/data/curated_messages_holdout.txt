@@ -1,0 +1,42 @@
+# A second set of hand-written messages, kept apart from curated_messages.txt.
+#
+# curated_messages.txt was looked at while the text model's phrase lists were
+# being designed, so results on it are a regression check, not a fair test.
+# This file was written after the design was frozen and before the model was
+# scored on it. It is only reported, never used to make a design decision; if
+# a result here ever drives a change, write a new holdout file.
+#
+# One message per line: <label><TAB><text>, label is "legit" or "scam".
+
+legit	Your taxi is arriving in 3 minutes. Look for a white Toyota, plate ending 4821.
+legit	Thanks for booking with us. Your room is reserved for two nights from 12 March. Check-in is from 3pm.
+legit	Your exam results are now available on the student portal. Good luck!
+legit	We have received your application and will be in touch within two weeks.
+legit	Your monthly data allowance is 80% used. It resets on the 5th.
+legit	The plumber can come on Tuesday morning between 8 and 12. Does that work for you?
+legit	Your insurance policy renews next month. Your new premium is £312. No action is needed if you wish to continue.
+legit	Sorry I missed your call, I was in a meeting. I will ring you back after 5.
+legit	Your payment to City Water of $38.50 was successful. Reference 55120.
+legit	Your package was left with your neighbour at number 14 because you were not home.
+legit	Parents' evening is on Thursday from 4pm. Please book a slot with your child's teacher through the school app.
+legit	Your gym membership has been paused as requested. It will restart on 1 June.
+legit	A new device was added to your account. If you recognise this activity, no action is needed.
+legit	Your train to Leeds is delayed by 12 minutes. The new departure time is 10:27 from platform 3.
+legit	Here are the minutes from yesterday's call. Please send any corrections by Friday.
+legit	Your card ending 4410 was used for a purchase of ₹2,300 at a grocery store. If this was not you, call the number on the back of your card.
+legit	Thanks for your feedback. We have passed it on to the team and will let you know what we decide.
+legit	Can you pick up some milk on your way home? We are also out of bread.
+legit	Your booking for the 7pm show is confirmed. Tickets are attached to this email.
+legit	Your annual service is due. Call us or book online at a time that suits you.
+scam	Your account will be terminated within 24 hours. Confirm your details immediately by clicking here.
+scam	Dear valued customer, your card has been blocked due to suspicious activity. Verify your card number and PIN to unblock it.
+scam	You are a lucky winner! You have been selected for a $500 gift card. Claim your reward now before it expires.
+scam	Notice: we could not deliver your package. Update your address and pay the redelivery fee here: http://redelivery-fee.top/pay
+scam	Your streaming account is on hold because your payment was declined. Update your billing details now to avoid losing access.
+scam	URGENT! Your tax refund of £642 is waiting. Submit your bank details today to receive it.
+scam	Dear user, unusual activity was detected on your mailbox. Click the link below and enter your password to keep your account.
+scam	Final warning: your phone number will be disabled. Call 09050001234 now to keep your number.
+scam	Congratulations, you have won the weekly lottery jackpot! Reply with your account number to claim your winnings.
+scam	Your cloud storage is almost full and your photos will be deleted. Click here to upgrade now.
+scam	Security notice: your account has been restricted. Confirm your identity right away or it will be closed.
+scam	Dear client, your invoice is overdue. Open the attachment and provide your login details to view the document.

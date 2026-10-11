@@ -1,0 +1,48 @@
+# Hand-written messages used to check the text model and to test the browser
+# implementation against Python. Written for this project: none is copied from
+# a dataset, so the file can be published.
+#
+# One message per line: <label><TAB><text>, label is "legit" or "scam".
+# The legit messages are the kind a text model is most likely to flag wrongly:
+# real notifications about accounts, payments, deliveries and one-time codes.
+
+legit	Your one-time code is 482913. It expires in 10 minutes. Never share this code with anyone.
+legit	Hi, your parcel will be delivered today between 2pm and 4pm. Track it in the app.
+legit	Reminder: your dentist appointment is tomorrow at 9:30am. Reply C to confirm or call us to rearrange.
+legit	Your statement for September is ready. Sign in to online banking to view it.
+legit	Thanks for your payment of $42.10. Your receipt is attached. No further action is needed.
+legit	Hey, are we still on for lunch on Friday? I can book the table for 1pm.
+legit	Your order has shipped and should arrive by Thursday. You can view the order in your account.
+legit	Team meeting moved to 3pm in room 4. Agenda and notes are in the shared folder.
+legit	Your electricity bill of £61.20 is due on the 14th. It will be collected by direct debit as usual.
+legit	We noticed a new sign-in to your account from a new device. If this was you, you can ignore this message.
+legit	Your flight to Mumbai departs at 18:45 from gate 22. Boarding starts 40 minutes before departure.
+legit	Mum, I landed safely. Will call you when I get to the hotel.
+legit	Your library books are due back on Monday. You can renew them online or at the desk.
+legit	Your subscription renews on 1 November for $9.99. You can cancel any time in settings.
+legit	Thank you for registering for the workshop. Joining instructions will be sent the day before.
+legit	The report you asked for is attached. Let me know if you would like any changes before Monday.
+legit	Your password was changed successfully. If you did not do this, contact support.
+legit	Happy birthday! Hope you have a great day. See you at the weekend.
+legit	Your prescription is ready to collect from the pharmacy. We are open until 6pm today.
+legit	Salary for October has been credited to your account. Your payslip is available on the portal.
+legit	Could you review my pull request when you have a moment? It fixes the date parsing bug.
+legit	Your table for four is confirmed for Saturday at 8pm. We look forward to seeing you.
+legit	Your refund of ₹1,250 has been processed and should reach your account in 3 to 5 working days.
+legit	Don't forget to bring your ID and the signed form to the appointment on Wednesday.
+legit	Your verification code for signing in is 771204. Do not share it with anyone.
+scam	URGENT: your account has been suspended. Verify your identity now at http://secure-login.account-verify.top/confirm or it will be closed.
+scam	Congratulations! You have won a £1000 prize. Claim now by calling 09061234567 before midnight. Txt STOP to opt out.
+scam	Your parcel is on hold due to unpaid customs fee. Pay $2.99 now to release it: www.parcel-redelivery.top/pay
+scam	Dear customer, we detected unusual activity. Click here to confirm your password and card details immediately.
+scam	FREE entry in our weekly competition! Text WIN to 80888 now to claim your free prize. T&Cs apply.
+scam	Your mailbox is almost full. Click the link below to upgrade your storage and avoid losing your emails.
+scam	Final notice: your payment was declined. Update your billing information within 24 hours to avoid suspension.
+scam	You have been selected to receive a cash reward. Reply with your bank account number to claim your winnings today.
+scam	Security alert: your password expires today. Click here to keep the same password and verify your account.
+scam	Your bank account has been locked. Verify now at http://bank-secure-update.top/login to restore access.
+scam	Urgent! Your mobile number has won a guaranteed £2000 cash award. Call now to claim. Offer ends tonight.
+scam	Invoice attached. Your account will be charged $499.99 today. If you did not authorise this, call our helpdesk now.
+scam	Dear user, your email account will be deactivated. Confirm your account by clicking the link and entering your password.
+scam	Tax refund notification: you are eligible for a refund of $820. Submit your details here to receive your payment.
+scam	Your subscription has expired. Click here to renew now and avoid interruption. Enter your card details to continue.
