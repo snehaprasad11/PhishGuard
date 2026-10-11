@@ -1,0 +1,82 @@
+# Well-known legitimate pages that a phishing detector must not flag: sign-in
+# pages, banks, payment providers and government services. These are exactly
+# the pages phishing imitates, so a false positive here costs the most trust.
+# Used only as a check in evaluate.py, never as training data.
+
+# Sign-in pages
+https://accounts.google.com/signin
+https://login.microsoftonline.com/
+https://login.live.com/
+https://appleid.apple.com/sign-in
+https://www.amazon.com/ap/signin
+https://www.facebook.com/login/
+https://www.instagram.com/accounts/login/
+https://www.linkedin.com/login
+https://x.com/login
+https://github.com/login
+https://login.yahoo.com/
+https://www.netflix.com/login
+https://www.dropbox.com/login
+https://signin.ebay.com/
+https://discord.com/login
+https://slack.com/signin
+https://zoom.us/signin
+https://id.atlassian.com/login
+https://www.reddit.com/login/
+https://accounts.spotify.com/login
+https://secure.booking.com/
+https://auth.uber.com/
+
+# Payments and banks
+https://www.paypal.com/signin
+https://www.paypal.com/myaccount/summary
+https://dashboard.stripe.com/login
+https://www.chase.com/
+https://secure.chase.com/web/auth/dashboard
+https://www.bankofamerica.com/
+https://secure.bankofamerica.com/login/sign-in/signOnV2Screen.go
+https://www.wellsfargo.com/
+https://connect.secure.wellsfargo.com/auth/login/present
+https://online.citi.com/US/login.do
+https://www.capitalone.com/
+https://verified.capitalone.com/auth/signin
+https://www.americanexpress.com/en-us/account/login
+https://www.hsbc.co.uk/
+https://www.barclays.co.uk/
+https://www.hdfcbank.com/
+https://netbanking.hdfcbank.com/netbanking/
+https://www.icicibank.com/
+https://www.onlinesbi.sbi/
+https://retail.onlinesbi.sbi/retail/login.htm
+https://www.axisbank.com/
+https://www.kotak.com/en/personal-banking.html
+https://www.revolut.com/
+https://wise.com/login
+
+# Government and tax
+https://www.irs.gov/payments
+https://www.irs.gov/account
+https://www.usa.gov/
+https://www.ssa.gov/myaccount/
+https://www.gov.uk/log-in-register-hmrc-online-services
+https://www.gov.uk/government/organisations/hm-revenue-customs
+https://www.india.gov.in/
+https://www.incometax.gov.in/iec/foportal/
+https://uidai.gov.in/
+https://www.canada.ca/en/revenue-agency.html
+https://my.gov.au/
+https://europa.eu/
+
+# Everyday sites
+https://www.google.com/
+https://www.youtube.com/
+https://www.wikipedia.org/
+https://en.wikipedia.org/wiki/Phishing
+https://www.microsoft.com/en-us/microsoft-365
+https://www.apple.com/
+https://www.amazon.in/
+https://www.flipkart.com/account/login
+https://www.bbc.com/news
+https://www.nytimes.com/
+https://stackoverflow.com/questions
+https://docs.python.org/3/library/urllib.parse.html

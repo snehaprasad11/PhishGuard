@@ -1,0 +1,82 @@
+# A second list of well-known legitimate pages, kept separate from
+# curated_benign.txt on purpose.
+#
+# curated_benign.txt was looked at while designing the model (it is what
+# revealed that real sign-in pages were being flagged), so results on it are
+# no longer an unbiased check. This list was written before any model was
+# scored on it and must never be used to make design decisions: it is only
+# reported. If a result here ever drives a change, write a new holdout list.
+
+# Sign-in pages
+https://login.salesforce.com/
+https://accounts.zoho.com/signin
+https://signin.aws.amazon.com/signin
+https://account.microsoft.com/
+https://myaccount.google.com/
+https://mail.google.com/mail/u/0/
+https://outlook.live.com/mail/
+https://mail.yahoo.com/
+https://www.icloud.com/
+https://account.samsung.com/membership/intro
+https://auth.services.adobe.com/en_US/index.html
+https://account.adobe.com/
+https://www.twitch.tv/login
+https://store.steampowered.com/login/
+https://steamcommunity.com/login/home/
+https://www.tiktok.com/login
+https://www.pinterest.com/login/
+https://medium.com/m/signin
+https://www.airbnb.com/login
+https://www.expedia.com/login
+https://www.walmart.com/account/login
+https://www.bestbuy.com/identity/global/signin
+https://www.etsy.com/signin
+https://accounts.shopify.com/lookup
+https://wordpress.com/log-in
+https://login.squarespace.com/
+https://www.notion.so/login
+https://trello.com/login
+https://www.figma.com/login
+https://www.canva.com/login
+https://gitlab.com/users/sign_in
+https://bitbucket.org/account/signin/
+https://web.whatsapp.com/
+https://login.xfinity.com/login
+
+# Payments, banks and crypto
+https://venmo.com/account/sign-in
+https://cash.app/login
+https://www.coinbase.com/signin
+https://accounts.binance.com/en/login
+https://paytm.com/
+https://www.phonepe.com/
+https://www.usbank.com/index.html
+https://onlinebanking.usbank.com/Auth/Login
+https://www.td.com/us/en/personal-banking
+https://www.rbcroyalbank.com/personal.html
+https://www.santander.co.uk/
+https://www.lloydsbank.com/
+https://www.natwest.com/
+https://www.pnbindia.in/
+https://www.bankofbaroda.in/
+https://www.canarabank.com/
+https://www.ally.com/
+https://www.discover.com/
+https://www.schwab.com/client-home
+https://www.fidelity.com/
+
+# Government and public services
+https://www.login.gov/
+https://secure.login.gov/
+https://www.id.me/
+https://www.ato.gov.au/
+https://www.service.nsw.gov.au/
+https://www.dmv.ca.gov/portal/
+https://www.nhs.uk/nhs-services/online-services/nhs-app/
+https://www.epfindia.gov.in/site_en/index.php
+https://www.irctc.co.in/nget/train-search
+https://www.passportindia.gov.in/
+https://www.usps.com/manage/informed-delivery.htm
+https://www.fedex.com/en-us/tracking.html
+https://www.ups.com/track
+https://www.dhl.com/global-en/home/tracking.html

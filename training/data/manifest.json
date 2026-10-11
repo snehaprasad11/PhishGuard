@@ -1,0 +1,88 @@
+{
+  "commoncrawl": {
+    "crawls": [
+      "CC-MAIN-2026-30",
+      "CC-MAIN-2026-34",
+      "CC-MAIN-2026-39"
+    ],
+    "file": "commoncrawl-2026-30_2026-34_2026-39.csv.gz",
+    "long_tail_domains": 15000,
+    "max_urls_per_domain": 5,
+    "rows": 275734,
+    "seed": 42,
+    "sha256": "9438d553bc71963f5a08908b7f367795798f2cb22817f752e83eaba074f242b6",
+    "snapshot_date": "2026-10-11",
+    "source": "https://data.commoncrawl.org/cc-index/collections/",
+    "tranco_top_n": 100000
+  },
+  "nazario_2022": {
+    "file": "nazario-phishing-2022.mbox",
+    "rows": 247,
+    "sha256": "a6291e2cb990204766fce425423949b403cce4ae6a660fc8d08812e40a063fa7",
+    "snapshot_date": "2026-10-11",
+    "source": "https://monkey.org/~jose/phishing/phishing-2022"
+  },
+  "nazario_2023": {
+    "file": "nazario-phishing-2023.mbox",
+    "rows": 419,
+    "sha256": "5007f1c1dc91b15e93e988afa3a1cf402e15c88f765d3057be8bfec50dae1fe8",
+    "snapshot_date": "2026-10-11",
+    "source": "https://monkey.org/~jose/phishing/phishing-2023"
+  },
+  "nazario_2024": {
+    "file": "nazario-phishing-2024.mbox",
+    "rows": 403,
+    "sha256": "60afa40a2757170093a2bde31ec9cda4e54d33992203ce04bfbbc86d2e5e5b99",
+    "snapshot_date": "2026-10-11",
+    "source": "https://monkey.org/~jose/phishing/phishing-2024"
+  },
+  "nazario_2025": {
+    "file": "nazario-phishing-2025.mbox",
+    "rows": 481,
+    "sha256": "f1fa7e0fe35c9a16f36d9aa20ade7e1d3908d1d0c1d917b8c53c8aa799ec1c8f",
+    "snapshot_date": "2026-10-11",
+    "source": "https://monkey.org/~jose/phishing/phishing-2025"
+  },
+  "openphish": {
+    "file": "openphish-2026-10-11.txt",
+    "rows": 300,
+    "sha256": "8a87b6438c9957868ccb42a66b93f9067f34dcc503ab014978dcbed822e513ec",
+    "snapshot_date": "2026-10-11",
+    "source": "https://openphish.com/feed.txt"
+  },
+  "phishtank": {
+    "file": "phishtank-2026-10-11.csv.gz",
+    "rows": 67621,
+    "sha256": "7f2bd511fd8d09bff51c20acc51a4f31d7379503a820458b93f2565bcad423f2",
+    "snapshot_date": "2026-10-11",
+    "source": "http://data.phishtank.com/data/online-valid.csv.gz"
+  },
+  "sms_spam": {
+    "file": "sms-spam-collection.zip",
+    "rows": 5574,
+    "sha256": "1587ea43e58e82b14ff1f5425c88e17f8496bfcdb67a583dbff9eefaf9963ce3",
+    "snapshot_date": "2026-10-11",
+    "source": "https://archive.ics.uci.edu/static/public/228/sms+spam+collection.zip"
+  },
+  "spamassassin_20030228_easy_ham": {
+    "file": "spamassassin-20030228_easy_ham.tar.bz2",
+    "rows": 2500,
+    "sha256": "2b7b65904bcfcc31d2b5f51946f2d261370b257402cbbd62930b46ab83367438",
+    "snapshot_date": "2026-10-11",
+    "source": "https://spamassassin.apache.org/old/publiccorpus/20030228_easy_ham.tar.bz2"
+  },
+  "spamassassin_20030228_easy_ham_2": {
+    "file": "spamassassin-20030228_easy_ham_2.tar.bz2",
+    "rows": 1400,
+    "sha256": "b4bd3dc5ae5b40f38e99a0e41ad7d16b428b56e818e3a6ffa07330d62004dd38",
+    "snapshot_date": "2026-10-11",
+    "source": "https://spamassassin.apache.org/old/publiccorpus/20030228_easy_ham_2.tar.bz2"
+  },
+  "tranco": {
+    "file": "tranco-2026-10-11.csv.zip",
+    "rows": 1000000,
+    "sha256": "eca9d1ba3dfe43bae67fb6b4a9c982baef0db177b6f8e9056b60810eedff4b9b",
+    "snapshot_date": "2026-10-11",
+    "source": "https://tranco-list.eu/top-1m.csv.zip"
+  }
+}
