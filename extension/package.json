@@ -11,7 +11,8 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "bench": "playwright test --config playwright.bench.config.ts",
-    "screenshots": "playwright test --config playwright.shots.config.ts"
+    "screenshots": "playwright test --config playwright.shots.config.ts",
+    "icons": "node scripts/render-icons.mjs"
   },
   "dependencies": {
     "onnxruntime-web": "^1.30.0",

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- PhishGuard icon: a shield with a tick. Two blues split down the middle give it
+       depth at 128px and still read as one shape at 16px. Rendered to PNG by `pnpm icons`. -->
+  <defs>
+    <clipPath id="shield">
+      <path d="M64 8 L112 24 V60 C112 90 92 110 64 121 C36 110 16 90 16 60 V24 Z" />
+    </clipPath>
+  </defs>
+  <g clip-path="url(#shield)">
+    <rect x="0" y="0" width="64" height="128" fill="#2f74d0" />
+    <rect x="64" y="0" width="64" height="128" fill="#1f5fbf" />
+  </g>
+  <path d="M64 8 L112 24 V60 C112 90 92 110 64 121 C36 110 16 90 16 60 V24 Z"
+        fill="none" stroke="#174a96" stroke-width="5" stroke-linejoin="round" />
+  <path d="M41 63 L58 80 L89 45" fill="none" stroke="#ffffff" stroke-width="13"
+        stroke-linecap="round" stroke-linejoin="round" />
+</svg>

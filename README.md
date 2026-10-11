@@ -79,7 +79,8 @@ training/  (Python, offline)                       extension/  (TypeScript, in y
 
 More detail: [architecture](docs/ARCHITECTURE.md) · [security and privacy](docs/SECURITY.md) ·
 [releases, rollback and drift](docs/MLOPS.md) · [model card notes](docs/MODEL_CARD.md) ·
-[performance](docs/PERFORMANCE.md) · [changelog](CHANGELOG.md)
+[performance](docs/PERFORMANCE.md) · [changelog](CHANGELOG.md) ·
+[beta tester guide](docs/BETA.md)
 
 ## Try the extension
 
@@ -105,6 +106,7 @@ pnpm test          # unit tests: feature parity with Python, models in ONNX Runt
 pnpm build && pnpm test:e2e   # the built extension in a real browser
 pnpm bench         # latency benchmark; rewrites models/latency.json and docs/PERFORMANCE.md
 pnpm screenshots   # regenerates docs/screenshots/
+pnpm icons         # renders icons/icon.svg to the PNG sizes in the manifest
 ```
 
 End-to-end tests use Playwright's Chromium, or installed Microsoft Edge on Windows. Set
@@ -128,9 +130,12 @@ python -m training.pipeline
 python -m training.gate
 ```
 
-`--from-snapshot` restores the exact files pinned in `training/data/manifest.json`. It needs
-`data.snapshot_base_url` in `config.yaml`, which is empty until the snapshot is published. To
-build a fresh snapshot from the live sources instead (this re-pins the manifest):
+`--from-snapshot` restores the exact files pinned in `training/data/manifest.json` from a
+mirror you control, set as `data.snapshot_base_url` in `config.yaml`. It is empty in this
+repository because the raw data is deliberately not redistributed (see
+[Data and attribution](#data-and-attribution)). To build your own snapshot from the live
+sources instead (this re-pins the manifest, so results will differ slightly from the
+published ones):
 
 ```bash
 python -m training.data.fetch phishtank openphish tranco commoncrawl sms_spam nazario spamassassin
@@ -177,7 +182,12 @@ python -m training.drift               # has phishing shifted since training?
 - Legitimate email: the SpamAssassin public corpus.
 - SMS: the UCI SMS Spam Collection.
 
-None of this data is in the repository. Check each source's terms before redistributing it.
+**The raw data is not redistributed here, on purpose.** OpenPhish's terms forbid passing its
+feed to third parties, PhishTank publishes no licence to republish its dump, and Common
+Crawl's licence is non-transferable. Only hashes of the files used are committed
+(`training/data/manifest.json`), together with the trained models and a list of well-known
+domains derived from Tranco. As a result CI tests the code and gates the committed models,
+but does not retrain them; retraining needs your own copy of the data.
 
 ## Roadmap
 

@@ -72,7 +72,7 @@ In `docs/screenshots/`, regenerated from the real interface with `pnpm screensho
 ## Before submitting
 
 - [ ] Load the unpacked build and click "Analyse this page" on several real pages.
-- [ ] Replace the generated icon with a designed one at 16, 48 and 128 pixels.
+- [ ] Decide whether to keep the shield icon (`extension/icons/icon.svg`) or commission one.
 - [ ] Record the demo video (outline in `docs/PORTFOLIO.md`).
 - [ ] Publish the model card somewhere public and link it from the listing.
 - [ ] Re-read the permission justifications against the manifest.

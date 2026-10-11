@@ -37,8 +37,9 @@ jobs:
       - name: Release gate (published model vs accepted baseline)
         run: python -m training.gate
 
-      # Retraining needs the pinned raw data, which cannot be re-downloaded from
-      # the live feeds. It runs only once data.snapshot_base_url is set.
+      # Retraining needs the pinned raw data. It is not redistributed (several
+      # sources' terms do not allow it), so this step only runs in a fork whose
+      # owner has set data.snapshot_base_url to a mirror they control.
       - name: Retrain from the pinned snapshot and gate the result
         run: |
           url=$(python -c "from training.config import load_config; print(load_config()['data']['snapshot_base_url'])")
