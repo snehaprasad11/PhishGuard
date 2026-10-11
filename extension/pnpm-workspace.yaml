@@ -1,0 +1,4 @@
+# protobufjs (a dependency of onnxruntime-web) has a post-install script that only
+# prints a version notice. It is deliberately not run.
+allowBuilds:
+  protobufjs: false

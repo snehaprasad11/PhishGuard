@@ -1,0 +1,40 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# --- Datasets: never committed. Only training/data/manifest.json (hashes) is. ---
+training/data/raw/
+training/data/processed/
+*.csv
+*.csv.gz
+*.parquet
+
+# --- MLflow local store + intermediate training outputs ---
+mlruns/
+mlartifacts/
+mlflow.db
+training/artifacts/
+
+# --- Node / extension ---
+node_modules/
+extension/dist/
+extension/*.zip
+extension/test-results/
+extension/playwright-report/
+*.tsbuildinfo
+
+# --- Secrets / local env ---
+.env
+.env.*
+!.env.example
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/

@@ -1,0 +1,111 @@
+# Single source of configuration for the training pipeline (spec §13).
+# Every value that changes a model's behaviour lives here, so an MLflow run
+# can log this file and be reproduced from it.
+
+seed: 42
+
+paths:
+  raw_data: training/data/raw              # git-ignored downloads
+  manifest: training/data/manifest.json    # committed: source, snapshot_date, sha256, rows
+  curated_benign: training/data/curated_benign.txt   # committed: must-not-flag sites
+  curated_benign_holdout: training/data/curated_benign_holdout.txt   # report-only
+  curated_messages: training/data/curated_messages.txt   # committed: hand-written messages
+  curated_messages_holdout: training/data/curated_messages_holdout.txt   # report-only
+  known_sites: models/known-sites.txt      # published with the model; the browser needs it
+  artifacts: training/artifacts            # git-ignored intermediate outputs
+  models: models                           # published ONNX + model card
+
+data:
+  # Where the pinned raw files can be re-downloaded from (e.g. a GitHub release).
+  # Empty until the snapshot is published; `fetch --from-snapshot` needs it.
+  snapshot_base_url: ""
+  phishtank:
+    url: http://data.phishtank.com/data/online-valid.csv.gz
+  openphish:   # independent phishing feed: an external check only, never trained on
+    url: https://openphish.com/feed.txt
+  tranco:
+    url: https://tranco-list.eu/top-1m.csv.zip
+    top_n: 100000          # benign URLs must belong to a domain ranked this high
+    known_sites_top_n: 10000   # domains ranked this high count as well-known sites
+    # A host on a well-known domain loses that trust once this many phishing URLs
+    # were reported on it during the training period (e.g. free site builders).
+    open_host_min_phishing: 5
+  # --- message text (the text model) ---
+  sms_spam:      # UCI SMS Spam Collection: spam and legitimate text messages
+    url: https://archive.ics.uci.edu/static/public/228/sms+spam+collection.zip
+  nazario:       # Jose Nazario's phishing email corpus, CC-BY-4.0, one mailbox per year
+    base_url: https://monkey.org/~jose/phishing/
+    years: [2022, 2023, 2024, 2025]
+  spamassassin:  # SpamAssassin public corpus: legitimate ("ham") email
+    base_url: https://spamassassin.apache.org/old/publiccorpus/
+    archives: [20030228_easy_ham, 20030228_easy_ham_2]
+  commoncrawl:
+    # Several crawls so benign URLs span a date range (needed for the time split).
+    crawls: [CC-MAIN-2026-30, CC-MAIN-2026-34, CC-MAIN-2026-39]
+    max_urls_per_domain: 5 # stop a handful of huge sites dominating the benign class
+    # Per crawl, this many less-popular domains (Tranco 100k-1M) and this many
+    # unlisted domains contribute one URL each, so small legitimate sites are covered.
+    long_tail_domains: 15000
+
+split:
+  phishing_min_date: "2024-01-01"   # older phishing is dropped as stale
+  # Phishing sites first reported before val_start train the model, those up to
+  # test_start calibrate it and set the threshold, the rest are the held-out test.
+  # Chosen so roughly 70 / 15 / 15 % of phishing sites fall in each.
+  val_start: "2026-07-16"
+  test_start: "2026-08-20"
+  benign_fractions: [0.70, 0.15, 0.15]   # benign-only sites, assigned by hash
+  max_urls_per_site: 10
+
+model:
+  version: url-v0.4.0
+  C: 1.0             # inverse L2 regularisation strength of the logistic regression
+
+# The message-text model (training/text/). Reads the wording of a pasted SMS or email.
+text_model:
+  version: text-v0.1.0
+  C: 1.0
+  bag_of_words:          # the comparison model only; it is not shipped
+    C: 4.0
+    max_terms: 3000      # vocabulary size: the most widespread words and word pairs
+    min_documents: 5     # a term must appear in at least this many training messages
+  split:
+    # Phishing email is split by the year of its mailbox; everything else by hash.
+    val_years: [2024]
+    test_years: [2025]
+    fractions: [0.70, 0.15, 0.15]
+
+threshold:
+  target_fpr: 0.01    # operating point: at most 1% of benign URLs flagged
+  # The threshold is the level that keeps validation FPR under target in this
+  # share of site-level bootstrap resamples, so it errs towards fewer false alarms.
+  confidence: 0.90
+
+# Release gates (training/gate.py). A candidate model fails CI if it breaks any of
+# these against the accepted baseline in models/baseline-metrics.json.
+#   max_drop / max_increase: allowed movement relative to the baseline
+#   max / min:               absolute limits, baseline or not
+gates:
+  pr_auc: {max_drop: 0.01}
+  recall_at_fpr_1pct: {max_drop: 0.02}
+  brier: {max_increase: 0.005}
+  test_fpr: {max: 0.015}                 # target is 0.01; the margin allows sampling noise
+  model_size_kb: {max: 500}
+  latency_ms_p50: {max: 150, required: false}   # spec budget; measured by `pnpm bench`
+  curated_holdout_flagged: {max: 2}      # well-known legitimate pages wrongly flagged
+  # Text model. Its test split shares the training corpora's quirks, so the gate
+  # leans on the hand-written holdout messages as much as on test metrics.
+  text_pr_auc: {max_drop: 0.03}
+  text_test_fpr: {max: 0.02}
+  text_test_recall: {max_drop: 0.05}
+  text_holdout_legit_flagged: {max: 2}   # ordinary modern messages wrongly flagged
+  text_holdout_scam_caught: {min: 9}     # of 12 hand-written scam messages
+
+# Drift monitoring (training/drift.py), run weekly by .github/workflows/drift.yml.
+drift:
+  psi_alert: 0.25     # alert when a feature's or the score's PSI goes above this
+  min_urls: 200       # fewer new phishing URLs than this is too little to judge
+
+mlflow:
+  tracking_uri: sqlite:///mlflow.db   # local file; MLflow 3 no longer accepts a plain folder store
+  experiment: phishguard-url

@@ -1,0 +1,19 @@
+# Training pipeline dependencies (Python 3.12).
+# Exact versions that produced the published model are in requirements.lock.
+numpy
+pandas
+scikit-learn
+scipy
+joblib
+pyarrow
+requests
+pyyaml
+tldextract
+mlflow
+onnx
+skl2onnx
+onnxruntime
+
+# dev
+pytest
+ruff
