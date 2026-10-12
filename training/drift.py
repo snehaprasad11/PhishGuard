@@ -14,8 +14,7 @@ training time (models/drift-reference.json). Three things are reported:
 
 Exit status is 2 when drift exceeds the alert level in config.yaml, which the
 scheduled workflow turns into a GitHub issue. Exit status 3 means the live
-feed could not be downloaded (PhishTank rate-limits downloads made without an
-application key; set PHISHTANK_APP_KEY to use one).
+feed could not be downloaded (PhishTank rate-limits repeated downloads).
 
 PSI (population stability index) sums (new% - ref%) * ln(new% / ref%) over
 bins. Rule of thumb: under 0.1 stable, 0.1 to 0.25 worth watching, above 0.25
@@ -25,7 +24,6 @@ a real shift.
 import argparse
 import json
 import logging
-import os
 import sys
 import tempfile
 from pathlib import Path
@@ -130,18 +128,6 @@ catch rate or a shift on several features is the signal to retrain on a fresh sn
 """
 
 
-def live_feed_url(configured: str) -> str:
-    """The feed URL, using a PhishTank application key if one is provided.
-
-    PhishTank's documented form for regular downloads is
-    `.../data/<application key>/online-valid.csv.gz`.
-    """
-    key = os.environ.get("PHISHTANK_APP_KEY", "").strip()
-    if not key:
-        return configured
-    return configured.replace("/data/online-valid", f"/data/{key}/online-valid")
-
-
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--live", action="store_true", help="download today's PhishTank feed")
@@ -163,11 +149,10 @@ def main() -> None:
             # Fresh data is only read, never pinned: the training snapshot must not change.
             feed = Path(tmp) / "phishtank-live.csv.gz"
             try:
-                _download(_session(), live_feed_url(cfg["data"]["phishtank"]["url"]), feed)
+                _download(_session(), cfg["data"]["phishtank"]["url"], feed)
             except requests.RequestException as error:
-                # The error text can contain the feed URL, and so the key: report only its type.
-                print(f"could not download the live feed ({type(error).__name__}). PhishTank "
-                      "rate-limits keyless downloads; try later or set PHISHTANK_APP_KEY.")
+                print(f"could not download the live feed ({type(error).__name__}). "
+                      "PhishTank rate-limits repeated downloads; try again later.")
                 sys.exit(3)
             since = args.since or manifest["phishtank"]["snapshot_date"]
         else:

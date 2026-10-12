@@ -80,9 +80,8 @@ It reports:
 A PSI above the alert level in `config.yaml` (0.25) opens a GitHub issue with the report. PSI
 under 0.1 is stable; 0.1 to 0.25 is worth watching.
 
-PhishTank rate-limits downloads made without an application key. Add a free key as the
-repository secret `PHISHTANK_APP_KEY` for a reliable weekly run; without one the job warns and
-skips when it is refused.
+PhishTank rate-limits repeated downloads. One download a week is well within that; if a run
+is refused anyway, the job warns and skips instead of failing.
 
 ## When to retrain
 

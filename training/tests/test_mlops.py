@@ -12,7 +12,6 @@ from training.drift import (
     bin_shares,
     build_reference,
     drift_report,
-    live_feed_url,
     psi,
     render_markdown,
 )
@@ -183,11 +182,3 @@ def test_drift_markdown_states_the_alert_and_the_catch_rate():
     assert "| `host_length` | 0.400 | **shift** |" in alert
     assert "| `path_depth` | 0.150 | watch |" in alert
     assert "No drift alert" in render_markdown(report, alert=False)
-
-
-def test_live_feed_url_uses_an_application_key_only_when_one_is_set(monkeypatch):
-    url = "http://data.phishtank.com/data/online-valid.csv.gz"
-    monkeypatch.delenv("PHISHTANK_APP_KEY", raising=False)
-    assert live_feed_url(url) == url
-    monkeypatch.setenv("PHISHTANK_APP_KEY", " abc123 ")
-    assert live_feed_url(url) == "http://data.phishtank.com/data/abc123/online-valid.csv.gz"

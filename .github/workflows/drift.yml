@@ -32,9 +32,6 @@ jobs:
       # Exit status: 0 no alert, 2 drift alert, 3 feed unavailable (rate limited).
       - name: Drift report against the live feed
         id: drift
-        env:
-          # Optional. Without a key PhishTank rate-limits downloads.
-          PHISHTANK_APP_KEY: ${{ secrets.PHISHTANK_APP_KEY }}
         run: |
           set +e
           python -m training.drift --live
